@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import CheckoutButton from './CheckoutButton'; 
 
 const ProductList = () => {
   const [productos, setProductos] = useState([]);
@@ -32,6 +33,12 @@ const ProductList = () => {
             <p>{producto.descripcion}</p>
             <p>Precio: ${producto.precio}</p>
             {producto.imagen && <img src={producto.imagen} alt={producto.nombre} width="150" />}
+              {/* 2. Aquí usas el componente CheckoutButton para cada producto */}
+            <CheckoutButton
+              amount={producto.precio}
+              orderId={`ORD-${producto.codigo}-${Date.now()}`} // Genera un ID de orden único y simple
+              description={`Pago por: ${producto.nombre}`}
+            />
           </div>
         ))}
       </div>
